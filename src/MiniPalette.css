@@ -1,11 +1,11 @@
 .minicolors-container {
-  background-color:  white;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 0.5rem;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer
+  background-color:  rgb(240, 237, 216);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer
 }
 
 .minicolorbox {
@@ -30,4 +30,14 @@
   padding-top: 0.5rem;
   font-size: 1rem;
   position: relative;
+}
+
+.minicolors-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  font-size: 1em;
 }

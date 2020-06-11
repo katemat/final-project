@@ -18,7 +18,9 @@ class PaletteList extends React.Component {
           <div className="palettes">
             {palettes.map(palette => (
               <Link to={`palette/${palette.id}`}>
-                <MiniPalette {...palette} style />
+                <MiniPalette {...palette}
+                  key={palette.id}
+                  id={palette.id} />
               </Link>
 
             ))}

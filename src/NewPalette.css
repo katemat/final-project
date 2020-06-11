@@ -7,7 +7,7 @@
 
 .newPalette-navbar {
   display: grid;
-  grid-template-columns: 1fr 4fr 2fr;
+  grid-template-columns: 270px 4fr 2fr;
 }
 
 
@@ -17,4 +17,24 @@
 
 aside {
   margin: 10px;
+  padding: 10px;
+  box-shadow: 3px 8px 6px rgb(142, 96, 24);
+  height: 100vh;
+  background-color: papayawhip;
+
 }
+
+.clear-btn , .random-btn, .add-btn {
+  margin: 10px;
+  text-align: center;
+}
+
+.add-btn {
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 2rem;
+  margin-left: 0;
+  margin-right: 0;
+}
+

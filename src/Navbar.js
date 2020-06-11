@@ -8,7 +8,7 @@ import './Navbar.css'
 
 class Navbar extends React.Component {
   render() {
-    // const { level, changeLevel } = this.props
+    const { level, changeLevel } = this.props
     return (
       <header>
         <div className="Navbar">
@@ -17,7 +17,7 @@ class Navbar extends React.Component {
               ⏎ Back</Link>
           </div>
         </div>
-        {/* <div className="slider">
+        <div className="slider">
           <div className="level-details">Level: {level}</div>
           <Slider
             defaultValue={level}
@@ -25,7 +25,7 @@ class Navbar extends React.Component {
             max={900}
             step={100}
             onAfterChange={changeLevel} />
-        </div> */}
+        </div>
         {/* <div className="select-container">
           <Select onChange={this.state.changeFormat}>
             <MenuItem value="hex">HEX</MenuItem>

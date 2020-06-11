@@ -1,6 +1,7 @@
 import React from 'react'
 import './ColorBox.css';
 import { CopyToClipboard } from 'react-copy-to-clipboard'
+import chroma from "chroma-js";
 
 
 class ColorBox extends React.Component {
@@ -27,7 +28,7 @@ class ColorBox extends React.Component {
           </div>
           <div className="color-container">
             <div className="color-name">
-              <span>{name}</span>
+              <span style={{ color: chroma(background).luminance() <= 0.8 ? "white" : "black" }}>{name} </span>
             </div>
             <button className="copy-btn">copy</button>
           </div>

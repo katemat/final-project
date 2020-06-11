@@ -7,7 +7,6 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Divider from '@material-ui/core/Divider'
 import SaveIcon from '@material-ui/icons/Save'
 import chroma from "chroma-js"
-
 import './NewPalette.css'
 
 class NewPalette extends React.Component {
@@ -67,10 +66,6 @@ class NewPalette extends React.Component {
 
   randomColor = () => {
     let randomColor = chroma.random()._rgb.slice(0, 3)
-    console.log(randomColor)
-    // let random = `"rgb(${randomColor})"`
-    let random = randomColor.hex
-    console.log(random)
     const newColor = {
       color: `rgb(${randomColor})`,
       name: `rgb(${randomColor})`
@@ -89,7 +84,6 @@ class NewPalette extends React.Component {
       colors: this.state.colors
     }
     this.props.savePalette(newPalette)
-
     this.props.history.push('/')
   }
 
@@ -108,7 +102,7 @@ class NewPalette extends React.Component {
               ⏎ Back</Link>
           </div>
           <div className="navbar-title">
-            <h1>Select Your Colors</h1>
+            <h1> Create Your Own Color Palette</h1>
           </div>
 
           <div className="save-palette">
@@ -136,68 +130,47 @@ class NewPalette extends React.Component {
         <Divider />
         <div className="NewPalette-container">
           <aside>
-            <Button
-              variant='contained'
-              color="secondary"
-              onClick={this.clearPalete}>
-              Clear Palette
+            <div className="clear-btn">
+              <Button
+                variant='contained'
+                color="secondary"
+                disabled={this.state.colors.length === 0}
+                onClick={this.clearPalete}>
+                Clear Palette
             </Button>
-            <Button
-              variant='contained'
-              color="primary"
-              onClick={this.randomColor}>
-              random
-            </Button>
-
-            <div>
-              <ChromePicker
-                color={this.state.currentColor}
-                onChangeComplete={this.updateCurrentColor} />
-              <ValidatorForm onSubmit={this.addNewColor}>
-                <TextValidator
-                  value={this.state.newColorName}
-                  name="newColorName"
-                  onChange={this.handleChange}
-                  validators={['required', 'isColorNameUnique', "isColorUnique"]}
-                  errorMessages={['this field is required',
-                    'Color Name must be unique',
-                    'Color cannot be selected twice']}
-                />
-
-                <Button
-                  variant='outlined'
-                  color='primary'
-                  type='submit'
-                  style={{ backgroundColor: this.state.currentColor }}>
-                  Add Color
-          </Button>
-              </ValidatorForm>
             </div>
+            <div className="random-btn">
+              <Button
+                variant='contained'
+                color="primary"
+                onClick={this.randomColor}>
+                Random Color
+            </Button>
+            </div>
+
+            <ChromePicker
+              color={this.state.currentColor}
+              onChangeComplete={this.updateCurrentColor} />
+            <ValidatorForm onSubmit={this.addNewColor}>
+              <TextValidator
+                value={this.state.newColorName}
+                name="newColorName"
+                onChange={this.handleChange}
+                validators={['required', 'isColorNameUnique', "isColorUnique"]}
+                errorMessages={['this field is required',
+                  'Color Name must be unique',
+                  'Color should be unique']}
+              />
+              <button
+                className="add-btn"
+                type='submit'
+                style={{ backgroundColor: this.state.currentColor, color: chroma(this.state.currentColor).luminance() <= 0.8 ? "white" : "black" }}>
+                Add Color
+              </button>
+            </ValidatorForm>
 
           </aside>
           <main>
-            {/* <header> */}
-            {/* <ValidatorForm onSubmit={this.handleSave}>
-                <TextValidator
-                  label="Enter Palette Name"
-                  disabled={this.state.colors.length === 0}
-                  name="newPaletteName"
-                  value={this.state.newPaletteName}
-                  onChange={this.handleChange}
-                  validators={['required', 'isPaletteNameUnique']}
-                  errorMessages={['this field is required', ' This name already exists']}
-                />
-                <div>
-                  <Button
-                    variant='contained'
-                    color='primary'
-                    type="submit"
-                    disabled={this.state.colors.length === 0} >
-                    Save Palette
-                  </Button>
-                </div>
-              </ValidatorForm> */}
-            {/* </header> */}
             <ul>{this.state.colors.map(color => (
               <DragAndDropColorBox
                 key={color.name}

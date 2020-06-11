@@ -3,8 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useParams
+  Link
 } from "react-router-dom";
 import NewPalette from './NewPalette'
 import PaletteList from './PaletteList'
@@ -12,25 +11,6 @@ import seedColors from "./seedColors";
 import Palette from './Palette'
 import { generatePalette } from './colorHelper'
 
-
-// function Home() {
-//   return (
-//     <div>
-//       <h1>Welcome to Color Life Creator!</h1>
-//     </div>
-//   )
-// }
-
-
-
-// function Generate() {
-
-//   return (
-//     <div>
-//       <h1>We can do it for you!</h1>
-//     </div>
-//   )
-// }
 
 class App extends React.Component {
   constructor(props) {
@@ -52,6 +32,8 @@ class App extends React.Component {
       palettes: [...this.state.palettes, newPalette]
     }, this.syncLocalStorage)
   }
+
+
   syncLocalStorage() {
     window.localStorage.setItem(
       "palettes", JSON.stringify(this.state.palettes)
@@ -62,20 +44,6 @@ class App extends React.Component {
 
     return (
       <div className="App">
-
-        {/* <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/palette/new">Create</Link>
-            </li>
-            <li>
-              <Link to="/generate">Generate</Link>
-            </li>
-          </ul>
-        </nav> */}
         <Switch>
           <Route
             exact path="/palette/new"
@@ -89,7 +57,8 @@ class App extends React.Component {
             )}
           />
           <Route path="/">
-            <PaletteList palettes={this.state.palettes} />
+            <PaletteList
+              palettes={this.state.palettes} />
           </Route>
         </Switch>
       </div >

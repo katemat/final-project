@@ -28,7 +28,7 @@ class Palette extends React.Component {
         <div className="Palette-colorBoxes">
           {colorBoxes}
         </div>
-        {/* footer  */}
+
       </div>
     )
   }
