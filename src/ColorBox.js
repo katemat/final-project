@@ -31,7 +31,7 @@ class ColorBox extends React.Component {
             </div>
             <button className="copy-btn">copy</button>
           </div>
-          <span className="display-shades" title="show more shades">shades</span>
+          {/* <span className="display-shades" title="show more shades">shades</span> */}
         </div>
       </CopyToClipboard>
     )

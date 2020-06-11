@@ -1,17 +1,21 @@
 import React from "react";
 import './DragAndDropColorBox.css'
-// import { SortableElement } from "react-sortable-hoc";
-// import { withStyles } from "@material-ui/styles";
-// import DeleteIcon from "@material-ui/icons/Delete";
-// import styles from "./styles/DraggableColorBoxStyles";
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import { SortableElement } from "react-sortable-hoc";
 
-function DragAndDropColorBox(props) {
+
+
+const DragAndDropColorBox = SortableElement(props => {
   return (
-    <div className="draganddropboxd-container">
-      <div className="draganddropbox" style={{ backgroundColor: props.color }}>
-        {props.name}
+
+    <div className="draganddropbox" style={{ backgroundColor: props.color }}>
+      <div className="draganddropbox-container">
+        <span className="draganddropbox-name">{props.name} </span>
+        <span className="delete-icon">
+          <DeleteForeverIcon onClick={props.handleClick} /></span>
+
       </div>
     </div>
   )
-}
+})
 export default DragAndDropColorBox

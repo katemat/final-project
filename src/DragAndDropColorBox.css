@@ -1,8 +1,41 @@
-.draganddropboxd-container {
-display: inline-flex
-}
-
 .draganddropbox {
   width: 200px;
   height: 200px;
+  display: inline-block;
+  text-transform: uppercase;
+  position: relative;
+  margin: -1.5px
 }
+
+.draganddropbox-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  font-size: 1em;
+}
+
+.draganddropbox-name {
+  color: white;
+  margin: 5px;
+}
+
+.delete-icon {
+  color: red;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  color: rgb(230, 219, 219);
+  /* font-size: large; */
+  transform: scale(2);
+}
+
+
+
+
+  

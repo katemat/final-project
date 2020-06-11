@@ -1,22 +1,22 @@
 import React from 'react'
 import { ChromePicker } from 'react-color'
 import Button from '@material-ui/core/Button'
-import DragAndDropColorBox from './DragAndDropColorBox'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import './NewPalette.css'
-// import { DialogForm } from './DialogForm'
+import DragAndDropList from './DragAndDropList'
+import arrayMove from 'array-move'
 
 class NewPalette extends React.Component {
 
   constructor(props) {
-    super(props);
+    super(props)
+
     this.state = {
       open: true,
-      currentColor: "skyblue",
+      currentColor: "#94554C",
       colors: [],
       newColorName: "",
       newPaletteName: ""
-
     }
   }
 
@@ -72,12 +72,19 @@ class NewPalette extends React.Component {
     this.props.savePalette(newPalette)
 
     this.props.history.push('/')
-
   }
 
-  // handleSaving = () => {
-  //   <DialogForm />
-  // }
+  handleDeleteColor = (colorName) => {
+    this.setState({
+      colors: this.state.colors.filter(color => color.name !== colorName)
+    })
+  }
+
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    this.setState(({ colors }) => ({
+      colors: arrayMove(colors, oldIndex, newIndex),
+    }));
+  };
 
   render() {
     return (
@@ -113,7 +120,6 @@ class NewPalette extends React.Component {
               variant='outlined'
               color='primary'
               type='submit'
-              // onClick={this.addNewColor}
               style={{ backgroundColor: this.state.currentColor }}>
               Add Color
           </Button>
@@ -135,16 +141,17 @@ class NewPalette extends React.Component {
                   variant='contained'
                   color='primary'
                   type="submit">
-                  {/*  onClick={this.handleSave}> */}
                   Save Palette
                   </Button>
               </div>
             </ValidatorForm>
           </header>
-          <ul>{this.state.colors.map(color => (
-            <DragAndDropColorBox color={color.color} name={color.name} />
-          ))}
-          </ul>
+          <DragAndDropList
+            colors={this.state.colors}
+            handleDeleteColor={this.handleDeleteColor}
+            axis='xy'
+            onSortEnd={this.onSortEnd}
+          />
         </main>
       </div>
     )
