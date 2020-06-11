@@ -37,7 +37,7 @@ class App extends React.Component {
     super(props)
     const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"))
     this.state = {
-      palettes: seedColors || savedPalettes
+      palettes: savedPalettes || seedColors
     }
   }
 

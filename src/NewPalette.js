@@ -1,19 +1,21 @@
 import React from 'react'
 import { ChromePicker } from 'react-color'
+import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
+import DragAndDropColorBox from './DragAndDropColorBox'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import Divider from '@material-ui/core/Divider'
+import SaveIcon from '@material-ui/icons/Save';
+
 import './NewPalette.css'
-import DragAndDropList from './DragAndDropList'
-import arrayMove from 'array-move'
 
 class NewPalette extends React.Component {
 
   constructor(props) {
-    super(props)
-
+    super(props);
     this.state = {
       open: true,
-      currentColor: "#94554C",
+      currentColor: "#534EA8",
       colors: [],
       newColorName: "",
       newPaletteName: ""
@@ -80,79 +82,109 @@ class NewPalette extends React.Component {
     })
   }
 
-  onSortEnd = ({ oldIndex, newIndex }) => {
-    this.setState(({ colors }) => ({
-      colors: arrayMove(colors, oldIndex, newIndex),
-    }));
-  };
-
   render() {
     return (
-      <div className="NewPalette-container">
-        <aside>
-          <div>
-            <Button
-              variant='contained'
-              color="secondary"
-              onClick={this.clearPalete}
-            >
-              Clear Palette
-        </Button>
-            <Button variant='contained' color="primary">
-              Random Color
-        </Button>
+      <div>
+        <div className="newPalette-navbar">
+          <div className="goBack">
+            <Link to='/'>
+              ⏎ Back</Link>
           </div>
-          <ChromePicker
-            color={this.state.currentColor}
-            onChangeComplete={this.updateCurrentColor} />
-          <ValidatorForm onSubmit={this.addNewColor}>
-            <TextValidator
-              value={this.state.newColorName}
-              name="newColorName"
-              onChange={this.handleChange}
-              validators={['required', 'isColorNameUnique', "isColorUnique"]}
-              errorMessages={['this field is required',
-                'Color Name must be unique',
-                'Color cannot be selected twice']}
-            />
+          <div className="navbar-title">
+            <h1>Select Your Colors</h1>
+          </div>
 
-            <Button
-              variant='outlined'
-              color='primary'
-              type='submit'
-              style={{ backgroundColor: this.state.currentColor }}>
-              Add Color
-          </Button>
-          </ValidatorForm>
-        </aside>
-        <main>
-          <header>
+          <div className="save-palette">
             <ValidatorForm onSubmit={this.handleSave}>
               <TextValidator
                 label="Enter Palette Name"
+                disabled={this.state.colors.length === 0}
                 name="newPaletteName"
                 value={this.state.newPaletteName}
                 onChange={this.handleChange}
                 validators={['required', 'isPaletteNameUnique']}
-                errorMessages={['this field is required', 'the Palette with this name already exists']}
-              />
-              <div>
-                <Button
-                  variant='contained'
-                  color='primary'
-                  type="submit">
-                  Save Palette
+                errorMessages={['this field is required', ' This name already exists']} />
+              <Button
+                variant='contained'
+                color='primary'
+                type="submit"
+                disabled={this.state.colors.length === 0}
+                size="large"
+                startIcon={<SaveIcon />} >
+                Save Palette
                   </Button>
-              </div>
             </ValidatorForm>
-          </header>
-          <DragAndDropList
-            colors={this.state.colors}
-            handleDeleteColor={this.handleDeleteColor}
-            axis='xy'
-            onSortEnd={this.onSortEnd}
-          />
-        </main>
+          </div>
+        </div>
+        <Divider />
+        <div className="NewPalette-container">
+          <aside>
+            <Button
+              variant='contained'
+              color="secondary"
+              onClick={this.clearPalete}>
+              Clear Palette
+            </Button>
+
+            <div>
+              <ChromePicker
+                color={this.state.currentColor}
+                onChangeComplete={this.updateCurrentColor} />
+              <ValidatorForm onSubmit={this.addNewColor}>
+                <TextValidator
+                  value={this.state.newColorName}
+                  name="newColorName"
+                  onChange={this.handleChange}
+                  validators={['required', 'isColorNameUnique', "isColorUnique"]}
+                  errorMessages={['this field is required',
+                    'Color Name must be unique',
+                    'Color cannot be selected twice']}
+                />
+
+                <Button
+                  variant='outlined'
+                  color='primary'
+                  type='submit'
+                  style={{ backgroundColor: this.state.currentColor }}>
+                  Add Color
+          </Button>
+              </ValidatorForm>
+            </div>
+
+          </aside>
+          <main>
+            {/* <header> */}
+            {/* <ValidatorForm onSubmit={this.handleSave}>
+                <TextValidator
+                  label="Enter Palette Name"
+                  disabled={this.state.colors.length === 0}
+                  name="newPaletteName"
+                  value={this.state.newPaletteName}
+                  onChange={this.handleChange}
+                  validators={['required', 'isPaletteNameUnique']}
+                  errorMessages={['this field is required', ' This name already exists']}
+                />
+                <div>
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    type="submit"
+                    disabled={this.state.colors.length === 0} >
+                    Save Palette
+                  </Button>
+                </div>
+              </ValidatorForm> */}
+            {/* </header> */}
+            <ul>{this.state.colors.map(color => (
+              <DragAndDropColorBox
+                key={color.name}
+                color={color.color}
+                name={color.name}
+                handleDelete={() => this.handleDeleteColor(color.name)} />
+            ))}
+            </ul>
+          </main>
+        </div>
       </div>
     )
   }

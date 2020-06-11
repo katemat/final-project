@@ -1,4 +1,20 @@
 .NewPalette-container {
   display: grid;
   grid-template-columns: 1fr 6fr;
+  height: 75vh;
+  
+}
+
+.newPalette-navbar {
+display: grid;
+grid-template-columns: 1fr 4fr 2fr;
+
+}
+
+
+.save-palette {
+margin-top: 10px;
+}
+aside {
+  margin: 10px;
 }
