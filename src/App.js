@@ -82,9 +82,6 @@ class App extends React.Component {
             render={(routeProps) =>
               <NewPalette savePalette={this.savePalette} palettes={this.state.palettes} {...routeProps} />}
           />
-          {/* <Route exact path="/generate">
-            <Generate />
-          </Route> */}
           <Route
             exact path='/palette/:id'
             render={(routeProps =>

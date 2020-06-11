@@ -5,7 +5,8 @@ import Button from '@material-ui/core/Button'
 import DragAndDropColorBox from './DragAndDropColorBox'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Divider from '@material-ui/core/Divider'
-import SaveIcon from '@material-ui/icons/Save';
+import SaveIcon from '@material-ui/icons/Save'
+import chroma from "chroma-js"
 
 import './NewPalette.css'
 
@@ -15,7 +16,7 @@ class NewPalette extends React.Component {
     super(props);
     this.state = {
       open: true,
-      currentColor: "#534EA8",
+      currentColor: "rgb(238,238,116)",
       colors: [],
       newColorName: "",
       newPaletteName: ""
@@ -61,6 +62,22 @@ class NewPalette extends React.Component {
   clearPalete = () => {
     this.setState({
       colors: []
+    })
+  }
+
+  randomColor = () => {
+    let randomColor = chroma.random()._rgb.slice(0, 3)
+    console.log(randomColor)
+    // let random = `"rgb(${randomColor})"`
+    let random = randomColor.hex
+    console.log(random)
+    const newColor = {
+      color: `rgb(${randomColor})`,
+      name: `rgb(${randomColor})`
+    }
+    this.setState({
+      colors: [...this.state.colors, newColor],
+      newColorName: ""
     })
   }
 
@@ -125,6 +142,12 @@ class NewPalette extends React.Component {
               onClick={this.clearPalete}>
               Clear Palette
             </Button>
+            <Button
+              variant='contained'
+              color="primary"
+              onClick={this.randomColor}>
+              random
+            </Button>
 
             <div>
               <ChromePicker
@@ -185,7 +208,7 @@ class NewPalette extends React.Component {
             </ul>
           </main>
         </div>
-      </div>
+      </div >
     )
   }
 }
