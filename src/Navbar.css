@@ -1,0 +1,59 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.Navbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 10vh;
+}
+
+.logo {
+  background-color: rgb(216, 246, 249);
+  margin-right: 15px;
+  padding: 0 15px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.logo a {
+  text-decoration: none;
+  color: blue;
+  font-weight: 800;
+}
+
+.level-details {
+  margin: 5px;
+  color: blue;
+  font-weight: 800;
+}
+
+.slider {
+  width: 400px;
+  margin: 10px 20px;
+  display: inline-block;
+}
+
+.rc-slider-handle {
+  width: 20px;
+  height: 20px;
+  background-color: rgb(10, 17, 235);
+}
+
+.rc-slider-rail {
+  height: 10px;
+  width: 400px;
+}
+
+.rc-slider {
+  height: 15px
+}
+
+.rc-slider-track {
+  background-color: transparent;
+}

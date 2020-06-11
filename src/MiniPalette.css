@@ -1,0 +1,33 @@
+.minicolors-container {
+  background-color:  white;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer
+}
+
+.minicolorbox {
+  width: 20%;
+  height: 25%;
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: -3.5px;
+}
+
+.colors {
+  background-color: rgb(250, 250, 250);
+  height: 150px;
+  width: 100%;
+}
+
+.minicolorboxname {
+  align-items: center;
+  margin: 0;
+  color: black;
+  padding-top: 0.5rem;
+  font-size: 1rem;
+  position: relative;
+}
