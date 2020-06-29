@@ -1,11 +1,12 @@
 .minicolors-container {
-  background-color:  rgb(240, 237, 216);
+  background-color: rgb(240, 237, 216);
   border: none;
   border-radius: 5px;
   padding: 0.5rem;
   position: relative;
   overflow: hidden;
-  cursor: pointer
+  cursor: pointer;
+  width: 180px;
 }
 
 .minicolorbox {
