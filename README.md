@@ -1,6 +1,6 @@
-## Create yoyr Color Palette
+## Create your Color Palette
 
-You can find the [Live Version Here](http://color-palette-me.surge.sh/)
+🌠You can find the [Live Version Here](http://color-palette-me.surge.sh/)
 
 ### Overview
 
@@ -8,7 +8,7 @@ You can find the [Live Version Here](http://color-palette-me.surge.sh/)
 
 #### User cases:
 
-the User can:
+👧🏻👨🏼‍🦰the User can:
 
 - create own Color Palette
 - save the Palette in Local Storage
