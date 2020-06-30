@@ -28,7 +28,7 @@
   box-sizing: border-box;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(3, 35%);
+  grid-template-columns: repeat(3, 30%);
   justify-content: center;
   grid-gap: 10px;
 }
